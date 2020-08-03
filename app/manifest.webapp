@@ -1,0 +1,47 @@
+{
+  "version": "0.1.0",
+  "name": "ExCurrency",
+     "subtitle": "Easy to use currency converter",
+  "description": "A smart currency converter for KaiOS. It gets the rates from the ECB",
+  "launch_path": "/index.html",
+  "icons": {
+    "16": "/img/icons/icon16x16.png",
+    "48": "/img/icons/icon48x48.png",
+    "56": "/img/icons/icon56x56.png",
+    "60": "/img/icons/icon60x60.png",
+    "112": "/img/icons/icon112x112.png",
+    "128": "/img/icons/icon128x128.png"
+  },
+  "developer": {
+    "name": "Charly Oudy",
+    "url": "https://github.com/charlycop/"
+  },
+  "type": "privileged",
+  "permissions": {"spatialnavigation-app-manage": {}},
+  "installs_allowed_from": [
+    "*"
+  ],
+    "subtitle":"A smart and elegant currency converter.",
+ "categories": [
+  "utilities"
+],
+
+"cursor":"true",
+     "orientation": [ "portrait" ],
+  "locales": {
+      "fr": {
+        "name": "ExCurrency",
+        "subtitle": "Convertisseur facile à utiliser",
+        "description": "Un convertisseur de monnaie fiable pour KaiOS. Les taux sont récupérés en temps réel sur le site de la BCE",
+        "permissions": {}
+
+    },
+        "en": {
+      "name": "ExCurrency",
+        "subtitle": "Easy to use currency converter",
+      "description": "A smart currency converter for KaiOS. It gets the rates from the ECB",
+      "permissions": {}
+    }
+},
+  "default_locale": "en"
+}
