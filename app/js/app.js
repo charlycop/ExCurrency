@@ -145,24 +145,35 @@ window.addEventListener('DOMContentLoaded', function() {
 
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var myObj = JSON.parse(this.responseText);
-            var text = '';
+
+        /* if the transfert is "done" */
+        if (this.readyState === XMLHttpRequest.DONE) {
+
+            /* update the localstorage rates if it's OK */
+            if(this.status === 200)
+                localStorage.setItem("jsonRates", this.responseText);
+
+            /* alert if we don't have rates even offline in localstorage */
+            if(!localStorage.getItem("jsonRates"))
+                alert('Please activate the internet connexion in order to get the rates.\n'+
+                      'After you get the rates 1 time then you can stay offline');
+            
+            /* get the localstorage rates and parse from json format */
+            var jsonRates = localStorage.getItem("jsonRates");
+            var myObj = JSON.parse(jsonRates);
 
             /* On rempli le tableau global avec les devises et les taux */
-            for (var i in myObj.rates) {
-                text += '1.00 ' + myObj.base + ' = ' + myObj.rates[i] + " " + i + "<br>";
+            for (var i in myObj.rates)
                 tableauO.push([i, parseFloat(myObj.rates[i])]);
-            }
 
-            /* on en profiute pour trier dans l'ordre alphabétique */
+            /* on en profite pour trier dans l'ordre alphabétique */
             tableauO.sort();
 
             /* MAJ de la date */
             document.getElementById("bottom").innerHTML = 'Got the rates on ' + myObj.date;
 
             /* on initialise les données du site */
-            initialize();
+            initialize();                  
         }
     };
 
@@ -315,8 +326,23 @@ function changeDevise(devise){
            
         }
      }
+    
+     
+     
+     // EVENEMENTS //
+    var update = function(e){
+        var deviseName = document.getElementById('ListeG').innerHTML,
+            res = document.getElementById("result");
 
-    // EVENEMENTS //
+        sessionStorage.setItem("montant", e.target.value);
+        
+        /* Update the result field amount */
+        res.innerHTML = conversion(deviseName, 'ListeG', e.target.value);
+
+        /* Update the result field font-size*/
+        res.style.fontSize = parseInt(380/res.innerHTML.length) + "px";
+    };
+
     document.getElementById('montant').focus();
     document.getElementById('montant').addEventListener('keyup', function(e){
         /* soit on descend d'une case, soit on modifie le montant. */
@@ -327,16 +353,7 @@ function changeDevise(devise){
             case 'ArrowUp':
                 break;
             default:
-                var deviseName = document.getElementById('ListeG').innerHTML,
-                    res = document.getElementById("result");
-
-                sessionStorage.setItem("montant", e.target.value);
-                
-                /* Update the result field amount */
-                res.innerHTML = conversion(deviseName, 'ListeG', e.target.value);
-
-                /* Update the result field font-size*/
-                res.style.fontSize = parseInt(380/res.innerHTML.length) + "px";
+                update(e);
             }
     });
 
@@ -351,8 +368,6 @@ function changeDevise(devise){
         e.target.value = '';
     });
 
-    document.getElementById('result').addEventListener('change', function(e) {
-        console.log('ici');
-    });
+    document.getElementById('montant').addEventListener('change', update);
 
     /////////////////
