@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.1.1",
   "name": "ExCurrency",
      "subtitle": "Easy to use currency converter",
   "description": "A smart currency converter for KaiOS. It gets the rates from the ECB",
