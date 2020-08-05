@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Privileged app</title>
-        <meta name="description" content="A privileged app stub">
+        <title>web app</title>
+        <meta name="description" content="A web app stub">
         <!--
             viewport allows you to control how mobile browsers will render your content.
             width=device-width tells mobile browsers to render your content across the
@@ -13,6 +13,8 @@
             https://developer.mozilla.org/Mozilla/Mobile/Viewport_meta_tag
             -->
         <meta name="viewport" content="width=device-width">
+        <meta name="theme-color" content="rgb(255, 255, 255)">
+
         <link rel="stylesheet" href="css/app.css">
         <!--
             Inline JavaScript code is not allowed for privileged and certified apps,
@@ -26,6 +28,9 @@
             execute the deferred files.
             Read about defer: https://developer.mozilla.org/Web/HTML/Element/script#attr-defer
             -->
+        
+        <!-- Load the currencies list with full name -->
+        <script type="text/javascript" src="js/currenciesList.js"></script>
         <script type="text/javascript" src="js/app.js" defer></script>
         <!--
             The following two lines are for loading the localisations library
@@ -45,21 +50,24 @@
             <div id="conteneur">
                 <input
                     class='items'
-                    type="number"
+                    type="tel"
                     tabIndex='0'
                     name='montant'
                     id='montant'
                     placeholder='Amount'
+                    maxlength="11"
                     value=''/>
                 <div class='Liste items' id='ListeG' tabIndex="1"></div>
-                <div id='doublefleche' class='doublefleche items'  tabIndex="2">_</div>
+                <div id='doublefleche' class='doublefleche items' tabIndex="2">_</div>
                 <div class='Liste items' id='ListeD' tabIndex="3"></div>
                 <div class="result">
-                    <div id="result" ></div>
+                    <div class='overflow' id="result"></div>
                     <div class='txdechange' id='txdechange'></div>
                 </div>
             </div>
             <div id='bottom'></div>
+
+
             <!-- OVERLAY DU TABLEAU -->
             <div id="cover" class="overlay hidden">
                 <table>

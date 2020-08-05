@@ -27,178 +27,6 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
-    /* Variables Globales */
-    var tableauComplets = {
-        'AED': 'UAE Dirham',
-        'AFN': 'Afghani',
-        'ALL': 'Lek',
-        'AMD': 'Armenian Dram',
-        'ANG': 'Netherlands Antillean Guilder',
-        'AOA': 'Kwanza',
-        'ARS': 'Argentine Peso',
-        'AUD': 'Australian Dollar',
-        'AWG': 'Aruban Florin',
-        'AZN': 'Azerbaijanian Manat',
-        'BAM': 'Convertible Mark',
-        'BBD': 'Barbados Dollar',
-        'BDT': 'Taka',
-        'BGN': 'Bulgarian Lev',
-        'BHD': 'Bahraini Dinar',
-        'BIF': 'Burundi Franc',
-        'BMD': 'Bermudian Dollar',
-        'BND': 'Brunei Dollar',
-        'BOB': 'Boliviano',
-        'BOV': 'Mvdol',
-        'BRL': 'Brazilian Real',
-        'BSD': 'Bahamian Dollar',
-        'BTN': 'Ngultrum',
-        'BWP': 'Pula',
-        'BYN': 'Belarussian Ruble',
-        'BZD': 'Belize Dollar',
-        'CAD': 'Canadian Dollar',
-        'CDF': 'Congolese Franc',
-        'CHE': 'WIR Euro',
-        'CHF': 'Swiss Franc',
-        'CHW': 'WIR Franc',
-        'CLF': 'Unidad de Fomento',
-        'CLP': 'Chilean Peso',
-        'CNY': 'Yuan Renminbi',
-        'COP': 'Colombian Peso',
-        'COU': 'Unidad de Valor Real',
-        'CRC': 'Costa Rican Colon',
-        'CUC': 'Peso Convertible',
-        'CUP': 'Cuban Peso',
-        'CVE': 'Cabo Verde Escudo',
-        'CZK': 'Czech Koruna',
-        'DJF': 'Djibouti Franc',
-        'DKK': 'Danish Krone',
-        'DOP': 'Dominican Peso',
-        'DZD': 'Algerian Dinar',
-        'EGP': 'Egyptian Pound',
-        'ERN': 'Nakfa',
-        'ETB': 'Ethiopian Birr',
-        'EUR': 'Euro',
-        'FJD': 'Fiji Dollar',
-        'FKP': 'Falkland Islands Pound',
-        'GBP': 'Pound Sterling',
-        'GEL': 'Lari',
-        'GHS': 'Ghana Cedi',
-        'GIP': 'Gibraltar Pound',
-        'GMD': 'Dalasi',
-        'GNF': 'Guinea Franc',
-        'GTQ': 'Quetzal',
-        'GYD': 'Guyana Dollar',
-        'HKD': 'Hong Kong Dollar',
-        'HNL': 'Lempira',
-        'HRK': 'Kuna',
-        'HTG': 'Gourde',
-        'HUF': 'Forint',
-        'IDR': 'Rupiah',
-        'ILS': 'New Israeli Sheqel',
-        'INR': 'Indian Rupee',
-        'IQD': 'Iraqi Dinar',
-        'IRR': 'Iranian Rial',
-        'ISK': 'Iceland Krona',
-        'JMD': 'Jamaican Dollar',
-        'JOD': 'Jordanian Dinar',
-        'JPY': 'Yen',
-        'KES': 'Kenyan Shilling',
-        'KGS': 'Som',
-        'KHR': 'Riel',
-        'KMF': 'Comoro Franc',
-        'KPW': 'North Korean Won',
-        'KRW': 'Won',
-        'KWD': 'Kuwaiti Dinar',
-        'KYD': 'Cayman Islands Dollar',
-        'KZT': 'Tenge',
-        'LAK': 'Kip',
-        'LBP': 'Lebanese Pound',
-        'LKR': 'Sri Lanka Rupee',
-        'LRD': 'Liberian Dollar',
-        'LSL': 'Loti',
-        'LYD': 'Libyan Dinar',
-        'MAD': 'Moroccan Dirham',
-        'MDL': 'Moldovan Leu',
-        'MGA': 'Malagasy Ariary',
-        'MKD': 'Denar',
-        'MMK': 'Kyat',
-        'MNT': 'Tugrik',
-        'MOP': 'Pataca',
-        'MRU': 'Ouguiya',
-        'MUR': 'Mauritius Rupee',
-        'MVR': 'Rufiyaa',
-        'MWK': 'Kwacha',
-        'MXN': 'Mexican Peso',
-        'MXV': 'Mexican Unidad de Inversion (UDI)',
-        'MYR': 'Malaysian Ringgit',
-        'MZN': 'Mozambique Metical',
-        'NAD': 'Namibia Dollar',
-        'NGN': 'Naira',
-        'NIO': 'Cordoba Oro',
-        'NOK': 'Norwegian Krone',
-        'NPR': 'Nepalese Rupee',
-        'NZD': 'New Zealand Dollar',
-        'OMR': 'Rial Omani',
-        'PAB': 'Balboa',
-        'PEN': 'Nuevo Sol',
-        'PGK': 'Kina',
-        'PHP': 'Philippine Peso',
-        'PKR': 'Pakistan Rupee',
-        'PLN': 'Zloty',
-        'PYG': 'Guarani',
-        'QAR': 'Qatari Rial',
-        'RON': 'Romanian Leu',
-        'RSD': 'Serbian Dinar',
-        'RUB': 'Russian Ruble',
-        'RWF': 'Rwanda Franc',
-        'SAR': 'Saudi Riyal',
-        'SBD': 'Solomon Islands Dollar',
-        'SCR': 'Seychelles Rupee',
-        'SDG': 'Sudanese Pound',
-        'SEK': 'Swedish Krona',
-        'SGD': 'Singapore Dollar',
-        'SHP': 'Saint Helena Pound',
-        'SLL': 'Leone',
-        'SOS': 'Somali Shilling',
-        'SRD': 'Surinam Dollar',
-        'SSP': 'South Sudanese Pound',
-        'STN': 'Dobra',
-        'SVC': 'El Salvador Colon',
-        'SYP': 'Syrian Pound',
-        'SZL': 'Lilangeni',
-        'THB': 'Baht',
-        'TJS': 'Somoni',
-        'TMT': 'Turkmenistan New Manat',
-        'TND': 'Tunisian Dinar',
-        'TOP': 'Pa’anga',
-        'TRY': 'Turkish Lira',
-        'TTD': 'Trinidad and Tobago Dollar',
-        'TWD': 'New Taiwan Dollar',
-        'TZS': 'Tanzanian Shilling',
-        'UAH': 'Hryvnia',
-        'UGX': 'Uganda Shilling',
-        'USD': 'US Dollar',
-        'USN': 'US Dollar (Next day)',
-        'UYI': 'Uruguay Peso en Unidades Indexadas (URUIURUI)',
-        'UYU': 'Peso Uruguayo',
-        'UZS': 'Uzbekistan Sum',
-        'VEF': 'Bolivar',
-        'VND': 'Dong',
-        'VUV': 'Vatu',
-        'WST': 'Tala',
-        'XAF': 'CFA Franc BEAC',
-        'XCD': 'East Caribbean Dollar',
-        'XDR': 'SDR (Special Drawing Right)',
-        'XOF': 'CFA Franc BCEAO',
-        'XPF': 'CFP Franc',
-        'XSU': 'Sucre',
-        'XUA': 'ADB Unit of Account',
-        'YER': 'Yemeni Rial',
-        'ZAR': 'Rand',
-        'ZMW': 'Zambian Kwacha',
-        'ZWL': 'Zimbabwe Dollar'
-    };
     var url = "https://api.exchangeratesapi.io/latest";
     var deviseReference = 'EUR';
 
@@ -209,13 +37,19 @@ window.addEventListener('DOMContentLoaded', function() {
     var lastChange;
 
     function fillTab() {
-        var t = '',
+        var tab = document.getElementById('tableau'), newTd, newTr,
             cpt = 0;
 
         for (var element of tableauO) {
-            t += '<tr><td  class=\'items\' tabIndex=' + ((cpt++) + 4) + ' id=' + element[0] + '>' + element[0] + '<br>(' + tableauComplets[element[0]] + ')</td></tr>';
+            newTd = document.createElement('td');
+            newTr = document.createElement('tr');
+            newTd.id = element[0];
+            newTd.className = 'items';
+            newTd.tabIndex = ((cpt++) + 4);
+            newTd.innerHTML = element[0] + '<br>(' + tableauComplets[element[0]] + ')';
+            newTr.appendChild(newTd);
+            tab.appendChild(newTr);
         }
-        document.getElementById('tableau').innerHTML = t;
     }
 
     /* Sélectionne une devise dans la liste */
@@ -279,7 +113,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     function conversion(deviseName, liste, montant) {
-        var text = '',
+        var text = '', un = parseFloat(1).toFixed(2),
             DeviseAutreListe, txdechange,
             tauxUnitaire = document.getElementById("txdechange");
 
@@ -292,8 +126,8 @@ window.addEventListener('DOMContentLoaded', function() {
             text = montant + ' ' + deviseName + ' = ' + (parseFloat(txdechange) * parseFloat(montant)).toFixed(2) + ' ' + DeviseAutreListe;
 
             tauxUnitaire.innerHTML =
-                '1.00 ' + deviseName + ' = ' + parseFloat(txdechange).toFixed(2) + ' ' + DeviseAutreListe + '   -   ' +
-                '1.00 ' + DeviseAutreListe + ' = ' + (1 / txdechange).toFixed(2) + ' ' + deviseName;
+                un + ' ' + deviseName + ' = ' + parseFloat(txdechange).toFixed(2) + ' ' + DeviseAutreListe + '   -   ' +
+                un + ' ' + DeviseAutreListe + ' = ' + (1 / txdechange).toFixed(2) + ' ' + deviseName;
 
         } else if (liste === 'ListeD') {
             DeviseAutreListe = document.getElementById('ListeG').innerHTML;
@@ -301,8 +135,8 @@ window.addEventListener('DOMContentLoaded', function() {
             text = montant + ' ' + DeviseAutreListe + ' = ' + (txdechange * montant).toFixed(2) + ' ' + deviseName;
 
             tauxUnitaire.innerHTML =
-                '1.00 ' + DeviseAutreListe + ' = ' + parseFloat(txdechange).toFixed(2) + ' ' + deviseName + '   -   ' +
-                '1.00 ' + deviseName + ' = ' + (1 / txdechange).toFixed(2) + ' ' + DeviseAutreListe;
+                un + ' ' + DeviseAutreListe + ' = ' + parseFloat(txdechange).toFixed(2) + ' ' + deviseName + '   -   ' +
+                un + ' ' + deviseName + ' = ' + (1 / txdechange).toFixed(2) + ' ' + DeviseAutreListe;
 
         }
 
@@ -474,10 +308,15 @@ function changeDevise(devise){
         document.getElementById(document.getElementById(listeId).innerHTML).focus();
     }
 
+    function sleep(miliseconds) {
+        var currentTime = new Date().getTime();
+     
+        while (currentTime + miliseconds >= new Date().getTime()) {
+           
+        }
+     }
 
     // EVENEMENTS //
-
-
     document.getElementById('montant').focus();
     document.getElementById('montant').addEventListener('keyup', function(e){
         /* soit on descend d'une case, soit on modifie le montant. */
@@ -488,10 +327,17 @@ function changeDevise(devise){
             case 'ArrowUp':
                 break;
             default:
-                var deviseName = document.getElementById('ListeG').innerHTML;
+                var deviseName = document.getElementById('ListeG').innerHTML,
+                    res = document.getElementById("result");
+
                 sessionStorage.setItem("montant", e.target.value);
-                document.getElementById("result").innerHTML = conversion(deviseName, 'ListeG', e.target.value);
-        }
+                
+                /* Update the result field amount */
+                res.innerHTML = conversion(deviseName, 'ListeG', e.target.value);
+
+                /* Update the result field font-size*/
+                res.style.fontSize = parseInt(380/res.innerHTML.length) + "px";
+            }
     });
 
     document.getElementById('montant').addEventListener('keydown', function(e){
@@ -503,6 +349,10 @@ function changeDevise(devise){
 
     document.getElementById('montant').addEventListener('focus', function(e) {
         e.target.value = '';
+    });
+
+    document.getElementById('result').addEventListener('change', function(e) {
+        console.log('ici');
     });
 
     /////////////////

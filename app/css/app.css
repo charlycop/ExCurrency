@@ -80,14 +80,16 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
      margin-top: 10px;
      background-color: white;
      border: 3px;
+
 }
  .result{
      margin-top: 50px;
-     font-size:large;
+     font-size:  25px;
      font-weight: bold;
      text-align: center;
      margin:auto;
-}
+ }
+
  .txdechange {
      background-color: white;
      font-size: x-small;
