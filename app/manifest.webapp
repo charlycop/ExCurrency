@@ -25,19 +25,19 @@
 "cursor":"true",
      "orientation": [ "portrait" ],
   "locales": {
-      "fr": {
+      "fr-FR": {
         "name": "ExCurrency",
         "subtitle": "Convertisseur facile à utiliser",
         "description": "Un convertisseur de monnaie fiable pour KaiOS. Les taux sont récupérés en temps réel sur le site de la BCE",
         "permissions": {}
 
     },
-        "en": {
+        "en-US": {
       "name": "ExCurrency",
         "subtitle": "Easy to use currency converter",
       "description": "A smart currency converter for KaiOS. It gets the rates from the ECB",
       "permissions": {}
     }
 },
-  "default_locale": "en"
+  "default_locale": "en-US"
 }
