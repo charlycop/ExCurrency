@@ -13,11 +13,13 @@
      font-size: 1rem;
      background: transparent
 }
- div#bottom{
+ div#updateDate{
      position: absolute;
      font-size: x-small;
      bottom : 0;
+     top : 270px;
 }
+
  .items:focus {
      border-color: black;
      box-shadow: 0 0 8px rgba(82, 168, 236, 1);
@@ -26,7 +28,7 @@
      border-bottom-style: solid;
      animation: shake 0.5s;
      /* When the animation is finished, start again */
-animation-iteration-count: 1;
+    animation-iteration-count: 1;
 }
 
 @keyframes shake {

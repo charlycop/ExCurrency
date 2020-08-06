@@ -1,5 +1,5 @@
 {
-  "version": "0.1.2",
+  "version": "0.1.3",
   "name": "ExCurrency",
      "subtitle": "Easy to use currency converter",
   "description": "A smart currency converter for KaiOS. It gets the rates in real time from the European Central Bank, and works offline too if no network available.",

@@ -25,6 +25,7 @@ window.addEventListener('DOMContentLoaded', function() {
         message.textContent = translate('message');
 
     }
+
 });
 
     var url = "https://api.exchangeratesapi.io/latest";
@@ -157,7 +158,7 @@ window.addEventListener('DOMContentLoaded', function() {
             if(!localStorage.getItem("jsonRates")){
                 alert('Please activate the internet connexion in order to get the rates.\n'+
                         'After you get the rates 1 time then you can stay offline');
-                
+
                 // Recharge la page
                 document.location.reload();
             }
@@ -174,18 +175,23 @@ window.addEventListener('DOMContentLoaded', function() {
             tableauO.sort();
 
             /* MAJ de la date */
-            document.getElementById("bottom").innerHTML = 'Got the rates on ' + myObj.date;
+            document.getElementById("updateDate").innerHTML = 'Got the rates on ' + myObj.date;
 
             /* on initialise les données du site */
-            initialize();                  
+            initialize();
         }
     };
 
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 
+    function actionTodo(element){
+
+    }
 
     /// NAVIGATION D-PAD ///
+
+
     function nav(move) {
 
         var currentIndex = document.activeElement.tabIndex;
@@ -193,70 +199,49 @@ window.addEventListener('DOMContentLoaded', function() {
         const items = document.querySelectorAll('.items');
         const targetElement = items[next];
         targetElement.focus();
-
     }
 
 
 
-
-
-    document.getElementById('ListeG').addEventListener('keydown', function(e) {
-
-        /* disable the +/- sur le champ montant */
-        if ( e.which == 38 || e.which == 40 ){
-            e.preventDefault();
-        }
-
-        /* soit on descend d'une case, soit on modifie le montant. */
+    function handleKeydown(e) {
         switch (e.key) {
             case 'ArrowUp':
-                nav(-1);
+                if((e.target.nodeName === 'TD' && e.target.tabIndex > 4)
+                    || e.target.nodeName !== 'TD')
+                    nav(-1);
                 break;
             case 'ArrowDown':
-                nav(1);
+                if((e.target.nodeName !== 'TD' && e.target.tabIndex < 3)
+                    || e.target.nodeName === 'TD')
+                   nav(1);
                 break;
             case 'Enter':
-                showList('ListeG');
+                if(e.target.nodeName === 'TD'){
+                    changeDevise(e.target.childNodes[0].parentElement.id);
+                } else {
+                    switch (e.target.id) {
+                        case 'ListeG':
+                            showList('ListeG');
+                            break;
+                        case 'ListeD':
+                            showList('ListeD');
+                            break;
+                        case 'doublefleche':
+                            switchCurrencies();
+                            break;
+                        default:
+                            break;
+                    }
+                }
                 break;
             default:
                 break;
         }
-    });
-
-    document.getElementById('ListeD').addEventListener('keydown', function(e) {
-
-        /* soit on descend d'une case, soit on modifie le montant. */
-        switch (e.key) {
-            case 'ArrowUp':
-                nav(-1);
-                break;
-            case 'Enter':
-                showList('ListeD');
-                break;
-            default:
-                break;
-        }
-    });
+    }
 
 
+    document.activeElement.addEventListener('keydown', handleKeydown);
 
-
-    document.getElementById('doublefleche').addEventListener('keydown', function(e) {
-
-        switch (e.key) {
-            case 'ArrowUp':
-                nav(-1);
-                break;
-            case 'ArrowDown':
-                nav(1);
-                break;
-            case 'Enter':
-                switchCurrencies();
-                break;
-            default:
-                break;
-        }
-    });
 
 function changeDevise(devise){
     var liste = document.getElementById(lastChange),
@@ -272,25 +257,6 @@ function changeDevise(devise){
     liste.focus();
     cover.classList.toggle("hidden");
 }
-
-
-    document.getElementById('tableau').addEventListener('keydown', function(e) {
-        switch (e.key) {
-            case 'ArrowUp':
-                if (e.target.tabIndex > 4)
-                    nav(-1);
-                break;
-            case 'ArrowDown':
-                if (e.target.tabIndex < 36)
-                    nav(1);
-                break;
-            case 'Enter':
-                changeDevise(e.target.childNodes[0].parentElement.id);
-                break;
-            default:
-                break;
-        }
-    });
 
     ///// fin navigation /////
 
@@ -311,7 +277,29 @@ function changeDevise(devise){
         document.getElementById("result").innerHTML = conversion(listeG.innerHTML, listeG.id, montant);
     };
 
+    function addAdvert(element){
+        getKaiAd({
+            publisher: '8378d86d-8018-4346-8af2-3be8ddbd0cb3',
+            app: 'ExCurrency',
+            test:0, //1 for test, 0 for prod
+            onerror: err => console.error('Custom catch:', err),
+            onready: ad => {
+                // Ad is ready to be displayed
+                // custom event
+                let button = document.getElementById(element)
+                button.addEventListener('focus', function btnListener() {
+                    button.removeEventListener('focus', btnListener)
+                    // calling 'display' will display the ad
+                    ad.call('display');
+                })
+            }
+        });
+    }
+
     function showList(listeId) {
+
+        //On programme la pub (quand on a choisi la devise)
+        addAdvert(listeId);
 
         // On indique quel liste est impactée
         lastChange = listeId;
@@ -322,15 +310,15 @@ function changeDevise(devise){
         // On focus sur le bon élément du tableau
         document.getElementById(document.getElementById(listeId).innerHTML).focus();
     }
-      
-     
+
+
      // EVENEMENTS //
     var update = function(e){
         var deviseName = document.getElementById('ListeG').innerHTML,
             res = document.getElementById("result");
 
         sessionStorage.setItem("montant", e.target.value);
-        
+
         /* Update the result field amount */
         res.innerHTML = conversion(deviseName, 'ListeG', e.target.value);
 
@@ -338,31 +326,16 @@ function changeDevise(devise){
         res.style.fontSize = parseInt(380/res.innerHTML.length) + "px";
     };
 
-    document.getElementById('montant').focus();
-    document.getElementById('montant').addEventListener('keyup', function(e){
-        /* soit on descend d'une case, soit on modifie le montant. */
-        switch (e.key) {
-            case 'ArrowDown':
-                nav(1);
-                break;
-            case 'ArrowUp':
-                break;
-            default:
-                update(e);
-            }
-    });
 
-    document.getElementById('montant').addEventListener('keydown', function(e){
-        /* disable the +/- sur le champ montant */
-        if ( e.which == 38 || e.which == 40 )
-            e.preventDefault();
-    });
+
 
 
     document.getElementById('montant').addEventListener('focus', function(e) {
         e.target.value = '';
     });
 
-    document.getElementById('montant').addEventListener('change', update);
+    document.getElementById('montant').addEventListener('keyup', update);
+
+    document.getElementById('montant').focus();
 
     /////////////////
