@@ -154,10 +154,14 @@ window.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem("jsonRates", this.responseText);
 
             /* alert if we don't have rates even offline in localstorage */
-            if(!localStorage.getItem("jsonRates"))
+            if(!localStorage.getItem("jsonRates")){
                 alert('Please activate the internet connexion in order to get the rates.\n'+
-                      'After you get the rates 1 time then you can stay offline');
-            
+                        'After you get the rates 1 time then you can stay offline');
+                
+                // Recharge la page
+                document.location.reload();
+            }
+
             /* get the localstorage rates and parse from json format */
             var jsonRates = localStorage.getItem("jsonRates");
             var myObj = JSON.parse(jsonRates);
@@ -318,16 +322,7 @@ function changeDevise(devise){
         // On focus sur le bon élément du tableau
         document.getElementById(document.getElementById(listeId).innerHTML).focus();
     }
-
-    function sleep(miliseconds) {
-        var currentTime = new Date().getTime();
-     
-        while (currentTime + miliseconds >= new Date().getTime()) {
-           
-        }
-     }
-    
-     
+      
      
      // EVENEMENTS //
     var update = function(e){
