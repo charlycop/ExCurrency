@@ -1,8 +1,8 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "ExCurrency",
      "subtitle": "Easy to use currency converter",
-  "description": "A smart currency converter for KaiOS. It gets the rates from the ECB",
+  "description": "A smart currency converter for KaiOS. It gets the rates in real time from the European Central Bank, and works offline too if no network available.",
   "launch_path": "/index.html",
   "icons": {
     "56": "/img/icons/icon56x56.png",
@@ -28,14 +28,14 @@
       "fr-FR": {
         "name": "ExCurrency",
         "subtitle": "Convertisseur facile à utiliser",
-        "description": "Un convertisseur de monnaie fiable pour KaiOS. Les taux sont récupérés en temps réel sur le site de la BCE",
+        "description": "Un convertisseur de monnaie fiable pour KaiOS. Les taux sont récupérés en temps réel sur le site de la Banque Centrale Européenne, fonctionne offline aussi sans Internet",
         "permissions": {}
 
     },
         "en-US": {
       "name": "ExCurrency",
         "subtitle": "Easy to use currency converter",
-      "description": "A smart currency converter for KaiOS. It gets the rates from the ECB",
+      "description": "A smart currency converter for KaiOS. It gets the rates in real time from the European Central Bank, and works offline too if no network available.",
       "permissions": {}
     }
 },
