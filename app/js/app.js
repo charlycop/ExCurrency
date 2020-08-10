@@ -37,22 +37,33 @@ window.addEventListener('DOMContentLoaded', function() {
 
     var lastChange;
 
-    function fillTab() {
-        var tab = document.getElementById('tableau'), newTd, newTr,
-            cpt = 0;
 
-        for (var element of tableauO) {
-            newTd = document.createElement('td');
-            newTr = document.createElement('tr');
-            newTd.id = element[0];
-            newTd.className = 'items';
-            newTd.tabIndex = ((cpt++) + 4);
-            newTd.innerHTML = element[0] + '<br>(' + tableauComplets[element[0]] + ')';
-            newTr.appendChild(newTd);
-            tab.appendChild(newTr);
-        }
+    function fillTab(){
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function(){
+            if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+                var maListe = JSON.parse(xmlhttp.responseText),
+                    tab = document.getElementById('tableau'), newTd, newTr,
+                    cpt = 0;
+
+                for (var element of tableauO) {
+                    newTd = document.createElement('td');
+                    newTr = document.createElement('tr');
+                    newTd.id = element[0];
+                    newTd.className = 'items';
+                    newTd.tabIndex = ((cpt++) + 4);
+                    newTd.innerHTML = element[0] + '<br>(' + maListe[element[0]] + ')';
+                    newTr.appendChild(newTd);
+                    tab.appendChild(newTr);
+                }
+            }
+        };
+
+        xmlhttp.open("GET","data/currenciesList.json", true);
+        xmlhttp.send();
     }
-
+    
     /* Sélectionne une devise dans la liste */
     function setDefault() {
         var listeD = document.getElementById('ListeD'),
