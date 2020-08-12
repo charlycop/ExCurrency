@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
     var url = "https://api.exchangeratesapi.io/latest";
-    var deviseReference = 'EUR';
+    var deviseReference = 'USD';
 
     var tableauO = [
         [deviseReference, parseFloat(1.0)]
@@ -78,7 +78,7 @@ window.addEventListener('DOMContentLoaded', function() {
         if (sessionStorage.getItem("ListeG")) {
             ListeG.innerHTML = sessionStorage.getItem("ListeG");
         } else {
-            ListeG.innerHTML = deviseReference;
+            ListeG.innerHTML = 'EUR';
         }
 
     }
@@ -155,6 +155,55 @@ window.addEventListener('DOMContentLoaded', function() {
         return text;
     }
 
+/*
+////////////GET RATES FROM API BEGIN ///////////
+(function() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+
+        // if the transfert is "done" 
+        if (this.readyState === XMLHttpRequest.DONE) {
+
+            // update the localstorage rates if it's OK 
+            if(this.status === 200)
+                localStorage.setItem("jsonRates", this.responseText);
+
+            // alert if we don't have rates even offline in localstorage 
+            if(!localStorage.getItem("jsonRates")){
+                alert('Please activate the internet connexion in order to get the rates.\n'+
+                      'After you get the rates 1 time then you can stay offline');
+
+                // Recharge la page
+                document.location.reload();
+            }
+
+            // get the localstorage rates and parse from json format 
+            var jsonRates = localStorage.getItem("jsonRates");
+            var myObj = JSON.parse(jsonRates);
+
+            // On rempli le tableau global avec les devises et les taux 
+            for (var i in myObj.rates)
+                tableauO.push([i, parseFloat(myObj.rates[i])]);
+
+            // on en profite pour trier dans l'ordre alphabétique 
+            tableauO.sort();
+
+            // MAJ de la date 
+            document.getElementById("updateDate").innerHTML = 'Got the rates on ' + myObj.date;
+
+            // on initialise les données du site 
+            initialize();
+        }
+    };
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+})();
+////////////GET RATES FROM API END //////////
+*/
+
+////////////GET RATES FROM NEW API BEGIN ///////////
+(function() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
 
@@ -168,7 +217,7 @@ window.addEventListener('DOMContentLoaded', function() {
             /* alert if we don't have rates even offline in localstorage */
             if(!localStorage.getItem("jsonRates")){
                 alert('Please activate the internet connexion in order to get the rates.\n'+
-                        'After you get the rates 1 time then you can stay offline');
+                      'After you get the rates 1 time then you can stay offline');
 
                 // Recharge la page
                 document.location.reload();
@@ -186,19 +235,19 @@ window.addEventListener('DOMContentLoaded', function() {
             tableauO.sort();
 
             /* MAJ de la date */
-            document.getElementById("updateDate").innerHTML = 'Got the rates on ' + myObj.date;
+            document.getElementById("updateDate").innerHTML = 'Update : ' + Date(myObj.timestamp).toString();
 
             /* on initialise les données du site */
             initialize();
         }
     };
-
-    xmlhttp.open("GET", url, true);
+    
+    xmlhttp.open("GET", 'https://openexchangerates.org/api/latest.json?app_id=6848de5224cf47ebac7a7faabc2a529a', true);
     xmlhttp.send();
+})();
+////////////GET RATES FROM NEW API END ///////////
 
-    function actionTodo(element){
 
-    }
 
     /// NAVIGATION D-PAD ///
 
