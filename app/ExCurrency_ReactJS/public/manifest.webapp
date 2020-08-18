@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "name": "ExCurrency",
+     "subtitle": "Easy to use currency converter",
+  "description": "A smart currency converter for KaiOS. It gets the rates of 170+ currencies in real time from the European Central Bank, and works offline too if no network available.",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "/img/kaios_icons/icon56x56.png",
+    "112": "/img/kaios_icons/icon112x112.png"
+  },
+  "developer": {
+    "name": "Charly Oudy",
+    "url": "https://github.com/charlycop/"
+  },
+  "type": "web",
+  "permissions": {"spatialnavigation-app-manage": {}},
+  "installs_allowed_from": [
+    "*"
+  ],
+    "subtitle":"A smart and elegant currency converter.",
+ "categories": [
+  "utilities"
+],
+"fullscreen": "true",
+"cursor":"true",
+     "orientation": [ "portrait" ],
+  "locales": {
+      "fr-FR": {
+        "name": "ExCurrency",
+        "subtitle": "Convertisseur facile à utiliser",
+        "description": "Un convertisseur de monnaie fiable pour KaiOS. Les taux de 170+ devises sont récupérés en temps réel sur le site de la Banque Centrale Européenne, fonctionne offline aussi sans Internet",
+        "permissions": {}
+
+    },
+        "en-US": {
+      "name": "ExCurrency",
+        "subtitle": "Easy to use currency converter",
+      "description": "A smart currency converter for KaiOS. It gets the rates of 170+ currencies in real time from the European Central Bank, and works offline too if no network available.",
+      "permissions": {}
+    }
+},
+  "default_locale": "en-US"
+}

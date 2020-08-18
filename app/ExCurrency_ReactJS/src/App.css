@@ -1,0 +1,154 @@
+html, body {
+   font-family: 'Ubuntu', sans-serif;
+   background: rgba(40,40,40, 0.1);
+   font-size: 1rem;
+   background: transparent
+}
+
+div#updateDate{
+   position: absolute;
+   font-size: xx-small;
+   bottom : 0;
+   /*top : 270px;*/
+}
+
+.items:focus {
+   border-color: black;
+   box-shadow: 0 0 8px rgba(82, 168, 236, 1);
+   outline:none;
+   border : 3px;
+   border-bottom-style: solid;
+   animation: shake 0.5s;
+   /* When the animation is finished, start again */
+  animation-iteration-count: 1;
+}
+
+@keyframes shake {
+0% { transform: translate(1px, 1px) rotate(0deg); }
+10% { transform: translate(-1px, -2px) rotate(-1deg); }
+20% { transform: translate(-3px, 0px) rotate(1deg); }
+30% { transform: translate(3px, 2px) rotate(0deg); }
+40% { transform: translate(1px, -1px) rotate(1deg); }
+50% { transform: translate(-1px, 2px) rotate(-1deg); }
+60% { transform: translate(-3px, 1px) rotate(0deg); }
+70% { transform: translate(3px, 1px) rotate(-1deg); }
+80% { transform: translate(-1px, -1px) rotate(1deg); }
+90% { transform: translate(1px, 2px) rotate(0deg); }
+100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.Liste{
+   cursor:pointer;
+   background-color: blue;
+   border: 0 ;
+   color:white;
+   text-align: center;
+   font-size: 2.5rem;
+   font-weight: bold;
+   margin-left: 5px;
+   margin-right: 5px;
+   margin-bottom: 10px;
+   margin-top: 10px;
+}
+.Liste:focus{
+   outline:none;
+   border : 3px;
+   border-color : black;
+   border-bottom-style: solid;
+}
+input{
+   padding-left: 8px;
+   background-color: white;
+   border: 3px;
+   color:darkgray;
+   border-color: black;
+   font-size: xx-large;
+   font-weight: bold;
+   height: 50px;
+   margin-left: 5px;
+   margin-right: 5px;
+   }
+
+/* Hide HTML5 Up and Down arrows. */
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#result{
+   margin-top: 0px;
+   background-color: white;
+   border: 3px;
+   
+}
+.result{
+   margin-top: 0px;
+   font-size:  20px;
+   font-weight: bold;
+   text-align: center;
+   margin:auto;
+}
+
+.txdechange {
+   background-color: white;
+   font-size: xx-small;
+   font-weight: normal;
+}
+
+.doublefleche{
+   font-family: 'arrow_7regular';
+   font-size: xx-large;
+   margin: auto;
+   width: max-content;
+   text-align: center;
+
+}
+
+#doublefleche:focus{
+  border : none;
+  box-shadow : none;
+  animation: shake 0.5s;
+  /* When the animation is finished, start again */
+ animation-iteration-count: 1;
+}
+
+
+#conteneur {
+   display: flex;
+   flex-direction: column;
+   margin:auto;
+   width: 98%;
+}
+.overlay{
+   position: absolute;
+   top:0;
+   left:0;
+   z-index: 1;
+   background-color: aqua;
+   height: 100%;
+   width:100%;
+   text-align: center;
+   transition: all 0.5s;
+}
+.hidden{
+   transform: translateX(-100%);
+   position: fixed;
+}
+table {
+   width: 100%;
+   margin: auto;
+   background: linear-gradient(45deg, lightblue, blue);
+   font-size : 1.5rem;
+   font-weight: bold;
+   overflow: hidden;
+}
+th, td {
+   padding-top: 10px;
+   padding-bottom: 10px;
+   background-color: rgba(255,255,255,0.2);
+   color: #fff;
+   text-align: center;
+}
+td:focus{
+   background-color: rgba(0,0,255,0.4);
+   outline:none;
+}
