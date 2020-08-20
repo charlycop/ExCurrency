@@ -50,7 +50,6 @@ class App extends Component {
     
     /* renvoi l'index dans le tableauO de la devise en arguement */
     findIndice(devise) {
-
         for (var i = 0, c = this.state.tableauZero.length; i < c; i++) {
             if (this.state.tableauZero[i][0] === devise)
                 return i;
@@ -95,20 +94,7 @@ class App extends Component {
                         
     }
     
-    componentWillUpdate(){
-        console.log('WILL UPDATE')
-        console.log(document.activeElement)
 
-    }
-    componentDidUpdate(){
-        console.log('DID UPDATE')
-        console.log(document.activeElement)
-
-    }
-
-    componentWillUnmount(){
-        console.log('UNMOUNT')
-    }
     /// NAVIGATION D-PAD ///
     // Arrow fx for binding
     handleKeydown = e => {
@@ -222,8 +208,10 @@ class App extends Component {
 
 
         document.activeElement.addEventListener('keydown', this.handleKeydown);
-        document.getElementById('montant').focus();
-
+        
+        const e = document.getElementById('montant')
+        if(e !== null)
+            e.focus();
     }
 
     showList(listeId) {
