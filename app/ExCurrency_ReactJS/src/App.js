@@ -7,6 +7,9 @@ import Tableau from './Tableau'
 
 
 function nav(move) {
+
+
+
     const activeE = document.activeElement;
     
     const currentIndex = activeE.tabIndex;
@@ -100,6 +103,9 @@ class App extends Component {
     // Arrow fx for binding
     handleKeydown = e => {
 
+        // check if rates update is needed
+        this.checkRateUpdate();
+        
         switch (e.key) {
             case 'ArrowUp':
                 if((e.target.nodeName === 'TD' && e.target.tabIndex > 4)
@@ -133,7 +139,33 @@ class App extends Component {
         }
     }
 
+    // check if rates update is needed
+    checkRateUpdate(){
+        const dateUpdate = this.state.dateUpdate;
+        console.log('dateUpdate : ' + dateUpdate)
+
+        
+        if(typeof dateUpdate === "number"){
+            
+            const timeSinceLastUpdate  = new Date() - dateUpdate;
+            const timeMaxWithOutUpdate = 21600000 // 6h = 6 * 60 * 60 * 1000 = 21600000
+            console.log('timeSinceLastUpdate : ' + timeSinceLastUpdate)
+            console.log('timeMaxWithOutUpdate : ' + timeMaxWithOutUpdate)
+            if (timeSinceLastUpdate > timeMaxWithOutUpdate){ // 1H
+                this.getTheRates();
+                console.log('MAJ')
+            }
+            else{
+                console.log('PAS MAJ')
+            }
+
+        } else {
+            console.log('une string')
+        }
+    }
+
     updateConv(e){
+           
        this.setState({ montant: e.target.value,
                        montantRes: parseFloat(e.target.value) * this.state.actualRate })
     }
@@ -156,7 +188,7 @@ class App extends Component {
                     
                     // Recharge la page
                     document.location.reload();
-                }
+                }                
                 
                 /* get the localstorage rates and parse from json format */
                 var jsonRates = localStorage.getItem("jsonRates");
@@ -178,14 +210,15 @@ class App extends Component {
                                 montantRes  : this.state.montant * newRate,
                                 actualRate  : newRate,
                                 deviseReference : myObj.base,
-                                dateUpdate  : Date(myObj.timestamp).toString()})
-                
+                                dateUpdate  : myObj.timestamp*1000})
+//new Date(myObj.timestamp*1000).toString()
                 /* On rempli le tableau complet en arrière plan */
                 this.fillTab()
             }
             
         }.bind(this)
         
+
         xmlhttp.open("GET", 'https://openexchangerates.org/api/latest.json?app_id=6848de5224cf47ebac7a7faabc2a529a', true);
         xmlhttp.send();
     }
@@ -204,10 +237,13 @@ class App extends Component {
         xmlhttp.send();
     }
 
+
+    
     componentDidMount(){
+
         this.getTheRates()
 
-
+        // Make the D-PAD navigation possible
         document.activeElement.addEventListener('keydown', this.handleKeydown);
         
         const e = document.getElementById('montant')
@@ -259,7 +295,11 @@ class App extends Component {
              dateUpdate,
              styleTab,
              tableauZero,
-             nomDevises }= this.state
+             nomDevises }= this.state     
+             
+             
+        
+
 
       return (<div>
           <div id="conteneur">
@@ -287,7 +327,7 @@ class App extends Component {
                         actualRate = {actualRate}
                 />
         </div>
-            <div id='updateDate'>Update : {dateUpdate}</div>
+            <div id='updateDate'>Update : {new Date(dateUpdate).toString()}</div>
             <Tableau styli={styleTab} tableauO={tableauZero} noms={nomDevises}/>
         </div>
       )
