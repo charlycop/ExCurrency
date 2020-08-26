@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Tableau = ({ styli, tableauO, noms, onKeyDown }) => (
+const Tableau = ({ styli, tableauO, noms }) => (
   <div id="cover" className={styli}>
     <table>
         <thead>
@@ -16,7 +16,6 @@ const Tableau = ({ styli, tableauO, noms, onKeyDown }) => (
                         id={element[0]}
                         className='items'
                         tabIndex={index+4}
-                        onKeyDown={(e) => onKeyDown(e)}
                     >{element[0]}<br></br>{noms[element[0]]}
                     </td>
                 </tr>
@@ -33,7 +32,6 @@ const Tableau = ({ styli, tableauO, noms, onKeyDown }) => (
     ]).isRequired,
     tableauO:  PropTypes.array.isRequired,
     noms: PropTypes.object.isRequired,
-    onKeyDown: PropTypes.func,
   }
 
 export default Tableau

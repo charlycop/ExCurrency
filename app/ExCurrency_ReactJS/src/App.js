@@ -8,6 +8,7 @@ import Tableau from './Tableau'
 
 function nav(move) {
     const activeE = document.activeElement;
+    
     const currentIndex = activeE.tabIndex;
     const next = currentIndex + move;
     const items = document.querySelectorAll('.items');
@@ -287,7 +288,7 @@ class App extends Component {
                 />
         </div>
             <div id='updateDate'>Update : {dateUpdate}</div>
-            <Tableau styli={styleTab} tableauO={tableauZero} noms={nomDevises} onKeyDown={this.handleKeydown}/>
+            <Tableau styli={styleTab} tableauO={tableauZero} noms={nomDevises}/>
         </div>
       )
   }
