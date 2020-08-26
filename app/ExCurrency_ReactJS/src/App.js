@@ -7,11 +7,7 @@ import Tableau from './Tableau'
 
 
 function nav(move) {
-
-
-
-    const activeE = document.activeElement;
-    
+    const activeE = document.activeElement;   
     const currentIndex = activeE.tabIndex;
     const next = currentIndex + move;
     const items = document.querySelectorAll('.items');
@@ -142,30 +138,17 @@ class App extends Component {
     // check if rates update is needed
     checkRateUpdate(){
         const dateUpdate = this.state.dateUpdate;
-        console.log('dateUpdate : ' + dateUpdate)
-
         
         if(typeof dateUpdate === "number"){
-            
             const timeSinceLastUpdate  = new Date() - dateUpdate;
             const timeMaxWithOutUpdate = 21600000 // 6h = 6 * 60 * 60 * 1000 = 21600000
-            console.log('timeSinceLastUpdate : ' + timeSinceLastUpdate)
-            console.log('timeMaxWithOutUpdate : ' + timeMaxWithOutUpdate)
-            if (timeSinceLastUpdate > timeMaxWithOutUpdate){ // 1H
-                this.getTheRates();
-                console.log('MAJ')
-            }
-            else{
-                console.log('PAS MAJ')
-            }
 
-        } else {
-            console.log('une string')
+            if (timeSinceLastUpdate > timeMaxWithOutUpdate)
+                this.getTheRates();
         }
     }
 
     updateConv(e){
-           
        this.setState({ montant: e.target.value,
                        montantRes: parseFloat(e.target.value) * this.state.actualRate })
     }
