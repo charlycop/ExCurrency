@@ -99,36 +99,46 @@ class App extends Component {
     // Arrow fx for binding
     handleKeydown = e => {
 
+        console.log(e.key)
         // check if rates update is needed
         this.checkRateUpdate();
         
         switch (e.key) {
             case 'ArrowUp':
                 if((e.target.nodeName === 'TD' && e.target.tabIndex > 4)
-                    || e.target.nodeName !== 'TD')
+                || e.target.nodeName !== 'TD')
                     nav(-1);
-                break;
-            case 'ArrowDown':
-                if((e.target.nodeName !== 'TD' && e.target.tabIndex < 3)
+                    break;
+                    case 'ArrowDown':
+                        if((e.target.nodeName !== 'TD' && e.target.tabIndex < 3)
                     || e.target.nodeName === 'TD')
-                   nav(1);
-                break;
-            case 'Enter':
-                if(e.target.nodeName === 'TD'){
-                    this.changeDevise(e.target.childNodes[0].parentElement.id);
-                } else {
-                    switch (e.target.id) {
-                        case 'ListeG': //same for listeG et listeD
-                        case 'ListeD':
-                            this.showList(e.target.id);
-                            break;
-                        case 'doublefleche':
-                            this.switchCurrencies()
-                            break;
-                        default:
-                            break;
+                    nav(1);
+                    break;
+                    case 'Enter':
+                        if(e.target.nodeName === 'TD'){
+                            this.changeDevise(e.target.childNodes[0].parentElement.id);
+                        } else {
+                            switch (e.target.id) {
+                                case 'ListeG': //same for listeG et listeD
+                                case 'ListeD':
+                                    this.showList(e.target.id);
+                                    break;
+                                    case 'doublefleche':
+                                        this.switchCurrencies()
+                                        break;
+                                        default:
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                   
+                case 'Backspace':
+                    console.log('TEST') 
+                    if(e.target.nodeName === 'TD'){
+                        e.preventDefault();               
+                        document.getElementById(this.state.lastChange).focus()
+                        this.setState({ styleTab: 'hidden' })
                     }
-                }
                 break;
             default:
                 break;
